@@ -1,0 +1,59 @@
+﻿@model ToDoList.Models.DashboardModel
+
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<h2 class="text-center">Dashboard</h2>
+
+<div class="container" style="max-width:700px; margin-top:30px;">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Total Tasks</div>
+                <div class="panel-body">
+                    <h3>@Model.TotalTasks</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-success">
+                <div class="panel-heading">Completed Tasks</div>
+                <div class="panel-body">
+                    <h3>@Model.CompletedTasks</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-warning">
+                <div class="panel-heading">Pending Tasks</div>
+                <div class="panel-body">
+                    <h3>@Model.PendingTasks</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">In Progress Tasks</div>
+                <div class="panel-body">
+                    <h3>@Model.InProgressTasks</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Task Completion</h3>
+    <div class="progress">
+        <div class="progress-bar progress-bar-success"
+             role="progressbar"
+             aria-valuenow="@Model.CompletedPercentage"
+             aria-valuemin="0"
+             aria-valuemax="100"
+             style="width:@Model.CompletedPercentage%;">
+            @Model.CompletedPercentage.ToString("0")%
+        </div>
+    </div>
+</div>

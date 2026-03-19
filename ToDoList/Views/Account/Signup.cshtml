@@ -1,0 +1,73 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "To Do List : Signup";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Signup</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container" style="margin-top: 80px; max-width: 400px;">
+        <h2>Sign Up</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <p style="color:red;">@ViewBag.Error</p>
+        }
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <input type="text"
+                       name="username"
+                       class="form-control"
+                       placeholder="Username: Max 20, only letter and number"
+                       maxlength="20"
+                       pattern="[A-Za-z0-9]+"
+                       oninput="this.value = this.value.replace(/\s/g, '')"
+                       title="Max 20 characters. Letters and numbers only. No spaces."
+                       required />
+            </div>
+
+            <div class="form-group" style="margin-top: 10px; position: relative;">
+                <input type="password"
+                       id="password"
+                       name="password"
+                       class="form-control"
+                       placeholder="Password: Min 8, 1 Upper, 1 Number, 1 Spcial"
+                       minlength="8"
+                       pattern="(?=.*[A-Z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}"
+                       oninput="this.value = this.value.replace(/\s/g, '')"
+                       title="At least 8 characters, include 1 uppercase, 1 number, and 1 special character."
+                       required />
+
+                <span onclick="togglePassword()"
+                      style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer;">
+                    👁️
+                </span>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button type="submit" class="btn btn-success">Sign up</button>
+            </div>
+        }
+
+        <div style="margin-top: 15px;">
+            <a href="/Account/Login">Already have an account? Log in</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var pwd = document.getElementById("password");
+            pwd.type = (pwd.type === "password") ? "text" : "password";
+        }
+    </script>
+</body>
+</html>
