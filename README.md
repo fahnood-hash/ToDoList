@@ -64,7 +64,7 @@ Press `Ctrl + F5` to start the application.
 Access the app via:
 
 ```text
-http://localhost:xxxx/
+http://localhost:xxxx/Account/Signup
 ```
 
 ---
